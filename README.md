@@ -41,39 +41,100 @@ FIGURE-04
 A Parallel in Parallel out (PIPO) shift register is used as a temporary storage device and like SISO Shift register it acts as a delay element.
 
 ### Procedure
-/* write all the steps invloved */
+```
+1.Use quartus software and import required modules.
+2.Assign inputs and outputs for shift registers.
+3.Assign logic for input to give output at positive edge. 
+4.Perform opertaions and produce rtl circuit.
+5.End module
+```
 
 
-
-### PROGRAM 
-/*
+### PROGRAM 1:
+```
 Program for  Implementation-of Shift-registers-using-verilog-
-Developed by: 
-RegisterNumber:  
-*/
-
-
-
-
+Developed by: Aadheeshwar.A
+RegisterNumber: 212221230001
+```
+```
+module SIPO(c,si,po);
+input c,si;
+output [7:0] po;
+reg [7:0] temp;
+always @ (posedge c)
+begin
+temp = {temp[6:0],si};
+end
+assign po = temp;
+endmodule 
+```
 
 
 ### RTL LOGIC  REGISTERS   
 
-
-
-
+![image](https://github.com/Vineesh-AI-DS/Exercise-09-Shift-registers-using-verilog-/assets/93427254/630d8f8c-4d6a-49c2-8b2f-abc7d03a75b9)
 
 
 
 
 
 ### TIMING DIGRAMS FOR SHIFT REGISTERS
+![image](https://github.com/Vineesh-AI-DS/Exercise-09-Shift-registers-using-verilog-/assets/93427254/6072a0d7-7bf0-43b5-844e-9e6955eea8bd)
+
+
+### PROGRAM 2:
+``` 
+mmodule PISO(Clk,Pin,load,so);
+input load,Clk;
+input [3:0] Pin;
+output reg so;
+reg [3:0] temp;
+always @ (posedge Clk)
+begin 
+if(load)
+temp <= Pin;
+else
+begin
+so<=temp[3];
+temp <={temp[2:0],1'b0};
+end
+end
+endmodule
+```
+### RTL LOGIC  REGISTERS   
+
+
+![image](https://github.com/Vineesh-AI-DS/Exercise-09-Shift-registers-using-verilog-/assets/93427254/f5b7950a-517e-43b3-87b5-312d179ddfb7)
 
 
 
 
+### TIMING DIGRAMS FOR SHIFT REGISTERS
 
+![image](https://github.com/Vineesh-AI-DS/Exercise-09-Shift-registers-using-verilog-/assets/93427254/508bf6d4-1e77-4d67-b7b2-ac688d4d2ba3)
+
+### PROGRAM 3:
+```
+module PIPO (Po,Pi,clk);
+input clk;
+input[3:0] Pi;
+output reg[3:0] Po;
+always@(posedge clk)
+begin
+Po=Pi;
+end 
+endmodule
+```
+### RTL LOGIC  REGISTERS   
+![image](https://github.com/Vineesh-AI-DS/Exercise-09-Shift-registers-using-verilog-/assets/93427254/89965887-7203-499a-9965-b42ae2ae0440)
+
+
+### TIMING DIGRAMS FOR SHIFT REGISTERS
+
+
+![image](https://github.com/Vineesh-AI-DS/Exercise-09-Shift-registers-using-verilog-/assets/93427254/badbc62c-86ef-4286-bda2-ab7fd492d2f7)
 
 
 
 ### RESULTS 
+Thus the program to implement shift registers is done successful.
